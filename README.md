@@ -6,7 +6,9 @@
 
 需安裝chrome的擴充tampermonkey[篡改猴](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo])
 
-再複製代碼新增上去即可用，如果聊天室沒更新ID通常F5重新整理幾次就好。
+再複製代碼新增上去即可用，如果聊天室沒更新ID通常F5重新整理幾次就好
+
+如果成功載入腳本會跳出提是訊息
 
 需**允許使用者指令碼**
 
