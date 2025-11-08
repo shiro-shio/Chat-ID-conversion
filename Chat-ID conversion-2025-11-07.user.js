@@ -12,6 +12,7 @@
 // @noframes     false
 // ==/UserScript==
 
+
 (function() {
     'use strict';
     console.log('[YT Chat Reader] 啟動中...');
@@ -62,10 +63,14 @@
         observer.observe(items, { childList: true });
         console.log('[YT Chat Reader] 監聽聊天室訊息');
     }
+    let users = {};
     function fetchAuthorPage(authorHandle, authorEl) {
+        if (authorHandle in users){
+            if (authorEl) authorEl.textContent = `${users[authorHandle]}`;
+            return;
+        }
         const url = `https://www.youtube.com/${authorHandle}`; // 保留 @
         //console.log('[YT Author] 取得 URL:', url);
-
         GM_xmlhttpRequest({
             method: 'GET',
             url: url,
@@ -75,7 +80,7 @@
                     const match = html.match(/<meta property="og:title" content="([^"]+)"/);
                     const title = match ? match[1] : 'Unknown';
                     //console.log(`[YT Author] ${authorHandle} 頻道標題:`, title);
-
+                    users[authorHandle] = title;
                     if (authorEl) authorEl.textContent = `${title}`;
                 } else {
                     console.warn('[YT Author] 取得失敗', res.status);
