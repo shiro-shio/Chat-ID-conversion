@@ -17,7 +17,7 @@
     'use strict';
     setTimeout(() => alert('[提醒通知] 您正在使用\n"Chat-ID conversion"\n按下確定繼續'), 3000);
     console.log('[YT Chat Reader] 啟動中...');
-    // 等待 iframe 內部 document 可讀
+
     function waitForIframe() {
         const iframe = document.querySelector("ytd-app #content iframe");
         if (iframe && iframe.contentDocument) {
@@ -28,11 +28,12 @@
         }
     }
 
-    // 等待聊天室容器 #items 出現
     function waitForChatContainer(doc) {
         const items = doc.querySelector('yt-live-chat-item-list-renderer #items');
         if (items) {
             console.log('[YT Chat Reader] 找到聊天室容器');
+            lb = doc.querySelector('yt-dropdown-menu #label-text');
+            olb = lb.textContent;
             observeChat(items);
         } else {
             console.log('[YT Chat Reader] 等待聊天室容器...');
@@ -47,7 +48,10 @@
         'YT-LIVE-CHAT-MEMBERSHIP-ITEM-RENDERER',
         'YTD-SPONSORSHIPS-LIVE-CHAT-GIFT-PURCHASE-ANNOUNCEMENT-RENDERER'
     ];
-    // 監聽新訊息
+
+    let count = 1;
+    let lb;
+    let olb;
     function observeChat(items) {
         const observer = new MutationObserver(mutations => {
             for (const m of mutations) {
@@ -77,8 +81,10 @@
             if (authorEl) authorEl.textContent = `${users[authorHandle]}`;
             return;
         }
+        lb.textContent = `${olb} (${count})`;
+        count += 1
         const url = `https://www.youtube.com/${authorHandle}`;
-        //console.log('[YT Author] 取得 URL:', url);
+
         GM_xmlhttpRequest({
             method: 'GET',
             url: url,
