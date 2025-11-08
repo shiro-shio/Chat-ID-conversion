@@ -15,6 +15,7 @@
 
 (function() {
     'use strict';
+    setTimeout(() => alert('[提醒通知] 您正在使用\n"Chat-ID conversion"\n按下確定繼續'), 3000);
     console.log('[YT Chat Reader] 啟動中...');
     // 等待 iframe 內部 document 可讀
     function waitForIframe() {
