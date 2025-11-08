@@ -76,7 +76,7 @@
             if (authorEl) authorEl.textContent = `${users[authorHandle]}`;
             return;
         }
-        const url = `https://www.youtube.com/${authorHandle}`; // 保留 @
+        const url = `https://www.youtube.com/${authorHandle}`;
         //console.log('[YT Author] 取得 URL:', url);
         GM_xmlhttpRequest({
             method: 'GET',
