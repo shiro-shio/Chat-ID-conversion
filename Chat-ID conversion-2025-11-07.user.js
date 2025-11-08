@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Chat-ID conversion
 // @namespace    http://tampermonkey.net/
-// @version      2025-11-07
+// @version      2025-11-08
 // @description  ID conversion
 // @author       shio
 // @match        https://www.youtube.com/watch?v=*
@@ -35,17 +35,22 @@
             observeChat(items);
         } else {
             console.log('[YT Chat Reader] 等待聊天室容器...');
-            setTimeout(() => waitForChatContainer(doc), 1000);
+            setTimeout(() => waitForChatContainer(doc), 3000);
         }
     }
-
+    const VALID_TAGS = [
+        'YT-LIVE-CHAT-TEXT-MESSAGE-RENDERER',
+        'YT-LIVE-CHAT-PAID-MESSAGE-RENDERER',
+        'YT-LIVE-CHAT-MEMBER-MESSAGE-RENDERER',
+        'YT-LIVE-CHAT-PAID-STICKER-RENDERER'
+    ];
     // 監聽新訊息
     function observeChat(items) {
         const observer = new MutationObserver(mutations => {
             for (const m of mutations) {
                 for (const node of m.addedNodes) {
                     if (node.nodeType === Node.ELEMENT_NODE &&
-                        node.tagName === 'YT-LIVE-CHAT-TEXT-MESSAGE-RENDERER') {
+                        VALID_TAGS.includes(node.tagName)) {
                         const authorEl = node.querySelector('#author-name');
                         //const messageEl = node.querySelector('#message');
                         const author = authorEl?.textContent?.trim() || '???';
