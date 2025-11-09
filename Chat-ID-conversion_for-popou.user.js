@@ -14,8 +14,6 @@
 
 (function() {
     'use strict';
-    console.log('[YT Chat] Script Loaded ✅');
-
     const VALID_TAGS = [
         'YT-LIVE-CHAT-TEXT-MESSAGE-RENDERER',
         'YT-LIVE-CHAT-PAID-MESSAGE-RENDERER',
@@ -29,22 +27,17 @@
         const items = document.querySelector('yt-live-chat-item-list-renderer #items');
         console.log(items);
         if (!items) return false;
-        console.log('[YT Chat] ✅ Chat container found');
-
+        
         const observer = new MutationObserver(mutations => {
             for (const m of mutations) {
                 for (const node of m.addedNodes) {
                     if (node.nodeType === Node.ELEMENT_NODE &&
                         VALID_TAGS.includes(node.tagName)) {
                         const authorEl = node.querySelector('#author-name');
-                        //const messageEl = node.querySelector('#message');
                         const author = authorEl?.textContent?.trim() || '???';
-                        //const message = messageEl?.textContent?.trim() || '';
-                        //authorEl.textContent = `[Test] ${author}`;
                         if (author.startsWith('@')) {
                             fetchAuthorPage(author, authorEl);
                         }
-                        //console.log(`[Chat] ${author}: ${message}`);
                     }
                 }
             }
@@ -87,7 +80,7 @@
             clearInterval(watcher);
         } else if (++attempt > 30) {
             clearInterval(watcher);
-            console.warn('[YT Chat] ⚠️ Failed to find chat container after multiple attempts');
+            console.warn('[YT Chat] Failed);
         }
     }, 5000);
 })();
