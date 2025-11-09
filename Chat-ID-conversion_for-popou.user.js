@@ -2,7 +2,7 @@
 // @name         Chat-ID-conversion for popou
 // @namespace    http://tampermonkey.net/
 // @version      2025-11-09
-// @description  try to take over the world!
+// @description  ID conversion
 // @author       shio
 // @match        https://www.youtube.com/live_chat?*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=youtube.com
