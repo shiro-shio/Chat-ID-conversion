@@ -3,7 +3,7 @@
 
 這是tampermonkey腳本
 
-需安裝chrome的擴充tampermonkey[篡改猴](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo])
+需安裝chrome的擴充tampermonkey[篡改猴](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
 
 需要在擴充功能上 **允許使用者指令碼**
 
