@@ -1,6 +1,9 @@
 # Chat-ID-conversion
 ## 可協助聊天室將@ID變更回名字
 
+1. 彈窗用**for-popou**
+2. 滑鼠停留名字上 顯示訂閱數&影片數
+
 這是tampermonkey腳本
 
 需安裝chrome的擴充tampermonkey[篡改猴](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
