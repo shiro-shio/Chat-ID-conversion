@@ -5,6 +5,7 @@
 // @description  ID conversion
 // @author       shio
 // @match        https://www.youtube.com/watch?v=*
+// @match        https://www.youtube.com/live/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=youtube.com
 // @grant        GM_xmlhttpRequest
 // @connect      youtube.com
