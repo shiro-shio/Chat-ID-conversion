@@ -99,15 +99,17 @@
             onload: res => {
                 if (res.status === 200) {
                     const html = res.responseText;
+                    //console.log(html)
                     const match = html.match(/<meta property="og:title" content="([^"]+)"/);
                     const title = match ? match[1] : 'Unknown';
                     const match2 = html.match(/([\d,.]+(?:萬)?)\s*位訂閱者.*?([\d,]+)\s*部影片/);
                     const info1 = match2 ? match2[1] : '?';
                     const info2 = match2 ? match2[2] : '?';
+                    console.log(match2)
                     users[authorHandle] = {};
                     users[authorHandle].title = title;
-                    users[authorHandle].info1 = info1.replace(/,/g, '');
-                    users[authorHandle].info2 = info2.replace(/,/g, '');
+                    users[authorHandle].info1 = info1;
+                    users[authorHandle].info2 = info2;
                     if (authorEl) {
                         authorEl.textContent = '';
                         const a = document.createElement('a');
