@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Chat-ID-conversion for popou
 // @namespace    http://tampermonkey.net/
-// @version      2025-11-14
+// @version      2025-11-18
 // @description  ID conversion
 // @author       shio
 // @match        https://www.youtube.com/live_chat?*
@@ -27,6 +27,7 @@
 
     function initYTLiveChatObserver() {
         const items = document.querySelector('yt-live-chat-item-list-renderer #items');
+
         if (!items) return false;
         console.log('[YT Chat] ✅ Chat container found');
 
