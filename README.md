@@ -1,6 +1,6 @@
 # Chat-ID-conversion
-1. 彈窗用**for-popou**
-2. 滑鼠停留名字上 顯示訂閱數&影片數
+ 彈窗用**for-popou**
+
 ## 可協助聊天室將@ID變更回名字
 
 
