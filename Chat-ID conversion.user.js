@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Chat-ID conversion
 // @namespace    http://tampermonkey.net/
-// @version      2025-11-14
+// @version      2025-11-22
 // @description  ID conversion
 // @author       shio
 // @match        https://www.youtube.com/watch?v=*
@@ -79,14 +79,14 @@
     let users = {};
     function fetchAuthorPage(authorHandle, authorEl) {
         if (authorHandle in users){
-            //if (authorEl) authorEl.textContent = `${users[authorHandle]}`;
-            if (authorEl) {
+            if (authorEl) authorEl.textContent = `${users[authorHandle]}`;
+            /*if (authorEl) {
                 authorEl.textContent = '';
                 const a = document.createElement('a');
                 a.title = `${users[authorHandle].info1}位訂閱者 ${users[authorHandle].info2}部影片`;
                 a.textContent = users[authorHandle].title;
                 authorEl.appendChild(a);
-            };
+            };*/
             return;
         }
         lb.textContent = `${olb} (${count})`;
@@ -102,11 +102,13 @@
                     //console.log(html)
                     const match = html.match(/<meta property="og:title" content="([^"]+)"/);
                     const title = match ? match[1] : 'Unknown';
-                    const match2 = html.match(/([\d,.]+(?:萬)?)\s*位訂閱者.*?([\d,]+)\s*部影片/);
+                    users[authorHandle] = title;
+                    if (authorEl) authorEl.textContent = `${title}`;
+                    /*const match2 = html.match(/([\d,.]+(?:萬)?)\s*位訂閱者.*?([\d,]+)\s*部影片/);
                     const info1 = match2 ? match2[1] : '?';
-                    const info2 = match2 ? match2[2] : '?';
-                    console.log(match2)
-                    users[authorHandle] = {};
+                    const info2 = match2 ? match2[2] : '?';*/
+                    //console.log(match2)
+                    /*users[authorHandle] = {};
                     users[authorHandle].title = title;
                     users[authorHandle].info1 = info1;
                     users[authorHandle].info2 = info2;
@@ -116,7 +118,7 @@
                         a.title = `${info1}位訂閱者 ${info2}部影片`;
                         a.textContent = title;
                         authorEl.appendChild(a);
-                    };
+                    };*/
                 } else {
                     console.warn('[YT Author] 取得失敗', res.status);
                 }
