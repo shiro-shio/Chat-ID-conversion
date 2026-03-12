@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         Chat-ID-conversion for popou
+// @name         Chat-ID-conversion V2 for popou
 // @namespace    http://tampermonkey.net/
-// @version      2025-11-22
+// @version      2026-03-12
 // @description  ID conversion
 // @author       shio
 // @match        https://www.youtube.com/live_chat?*
@@ -67,39 +67,18 @@
             };*/
             return;
         }
-        const url = `https://www.youtube.com/${authorHandle}`;
-
-        GM_xmlhttpRequest({
-            method: 'GET',
-            url: url,
-            onload: res => {
-                if (res.status === 200) {
-                    const html = res.responseText;
-                    const match = html.match(/<meta property="og:title" content="([^"]+)"/);
-                    const title = match ? match[1] : 'Unknown';
-                    const match2 = html.match(/([\d,.]+(?:萬)?)\s*位訂閱者.*?([\d,]+)\s*部影片/);
-                    const info1 = match2 ? match2[1] : '?';
-                    const info2 = match2 ? match2[2] : '?';
-                    users[authorHandle] = title;
-                    if (authorEl) authorEl.textContent = `${title}`;
-                    /*users[authorHandle] = {};
-                    users[authorHandle].title = title;
-                    users[authorHandle].info1 = info1.replace(/,/g, '');
-                    users[authorHandle].info2 = info2.replace(/,/g, '');
-                    users[authorHandle].info2 = info2.replace(/,/g, '');
-                    if (authorEl) {
-                        authorEl.textContent = '';
-                        const a = document.createElement('a');
-                        a.title = `${info1}位訂閱者 ${info2}部影片`;
-                        a.textContent = title;
-                        authorEl.appendChild(a);
-                    };*/
-                } else {
-                    console.warn('[YT Author] 取得失敗', res.status);
-                }
-            },
-            onerror: err => console.error('[YT Author] 請求錯誤', err)
-        });
+        const url = `https://yt-id-conversion.shiroshio0507.workers.dev/?chid=${authorHandle}`;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+            if (data.status === "success") {
+                users[authorHandle] = data.name;
+                if (authorEl) authorEl.textContent = `${data.name}`;
+            } else {
+                if (authorEl) authorEl.textContent = `${authorHandle}`;
+            }
+        })
+            .catch(err => console.error("請求失敗:", err));
     }
 
     let attempt = 0;
