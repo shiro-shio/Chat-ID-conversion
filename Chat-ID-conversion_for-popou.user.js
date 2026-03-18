@@ -6,7 +6,6 @@
 // @author       shio
 // @match        https://www.youtube.com/live_chat?*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=youtube.com
-// @grant        GM_xmlhttpRequest
 // @connect      youtube.com
 // @run-at       document-end
 // @noframes     false
