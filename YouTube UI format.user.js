@@ -17,7 +17,7 @@
         if (contents) {
             contents.style.setProperty('--ytd-rich-grid-items-per-row', TARGET_VAL, 'important');
             contents.style.setProperty('--ytd-rich-grid-posts-per-row', TARGET_VAL, 'important');
-            contents.style.setProperty('--ytd-rich-grid-slim-items-per-row', TARGET_VAL, 'important');
+            contents.style.setProperty('--ytd-rich-grid-slim-items-per-row', TARGET_VAL+1, 'important');
         }
     };
     const init = () => {
