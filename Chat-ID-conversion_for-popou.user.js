@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Chat-ID-conversion V2 for popou
 // @namespace    http://tampermonkey.net/
-// @version      2026-03-12
+// @version      2026-03-20
 // @description  ID conversion
 // @author       shio
 // @match        https://www.youtube.com/live_chat?*
